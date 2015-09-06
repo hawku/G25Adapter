@@ -71,6 +71,17 @@
 #define MODE_DEBUG 2
 #define MODE_BLIP 3
 
+
+// Multimedia buttons
+#define MULTIMEDIA_VOLUME_UP    1
+#define MULTIMEDIA_VOLUME_DOWN  2
+#define MULTIMEDIA_MUTE         4
+#define MULTIMEDIA_PLAY         8
+#define MULTIMEDIA_STOP         16
+#define MULTIMEDIA_PAUSE        32
+#define MULTIMEDIA_NEXT         64
+#define MULTIMEDIA_PREVIOUS     128
+
 // USB interval (ms)
 #define USB_UPDATE_INTERVAL 2
 

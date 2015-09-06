@@ -19,6 +19,13 @@ uint8_t vendorData[32];
 uint32_t externalButtons;
 
 //
+// Send multimedia buttons
+//
+void SendMultimediaButtons(uint8_t multimediaButtons) {
+  HID_SendReport(4, &multimediaButtons, sizeof(multimediaButtons));
+}
+
+//
 // Reset input
 //
 void resetInput(DeviceInput& input) {
@@ -244,6 +251,7 @@ bool isButtonPressed(uint32_t button) {
   }
   return false;
 }
+
 
 //
 // Check if button is released
@@ -586,6 +594,21 @@ void loop() {
     } if (isButtonReleased(BUTTON_DPAD_DOWN)) {
       Keyboard.release(KEY_PAGE_DOWN);
     }
+
+    // DPad Left == Volume Down
+    if(isButtonPressed(BUTTON_DPAD_LEFT)) { 
+      SendMultimediaButtons(MULTIMEDIA_VOLUME_DOWN);
+    } if (isButtonReleased(BUTTON_DPAD_LEFT)) {
+      SendMultimediaButtons(0);
+    }
+
+    // DPad Right == Volume Up
+    if(isButtonPressed(BUTTON_DPAD_RIGHT)) { 
+      SendMultimediaButtons(MULTIMEDIA_VOLUME_UP);
+    } if (isButtonReleased(BUTTON_DPAD_RIGHT)) {
+      SendMultimediaButtons(0);
+    }
+    
 
   } else {
     delay(1);
